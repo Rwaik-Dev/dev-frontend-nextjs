@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import ItemCard from './_components/ItemCard';
 import { ProductTypeResponse } from '@/utils/types';
 import Loader from './_components/Loader';
+import { getProduts } from '@/utils/functions/products/getProducts';
+import { toast } from 'sonner';
 
 
 
@@ -14,8 +16,15 @@ export default function Home() {
   useEffect(() => {
     async function fetchProducts() {
       setLoading(true)
-      const response = await fetch('http://localhost:3000/api/products/listProducts?limit=1000')
-      const data = await response.json()
+      const response = await getProduts({ limit: -20 })
+      if (response instanceof Error) {
+        toast.error(response.message)
+        setLoading(false)
+        return
+      }
+
+      const data = response
+
       setProducts(data)
       setLoading(false)
     }
