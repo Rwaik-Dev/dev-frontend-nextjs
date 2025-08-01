@@ -13,4 +13,8 @@ export type ProductTypeResponse = {
     description: string;
     category: string;
     image: string;
+    rating: {
+        rate: number;
+        count: number;
+    }
 }
