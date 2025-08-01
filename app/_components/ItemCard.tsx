@@ -21,7 +21,7 @@ export default function ItemCard(product: ProductTypeResponse) {
 
     return (
         <Card className='scale-100 hover:scale-102 transition-all duration-300 cursor-pointer' onClick={() => router.push(`/product/${product.id}`)}>
-            <CardHeader className='flex justify-center items-center'>
+            <CardHeader className='flex justify-center items-center h-[300px]'>
                 <Image
                     src={product.image}
                     alt={product.title}
@@ -33,9 +33,10 @@ export default function ItemCard(product: ProductTypeResponse) {
                     width={500}
                     height={300} />
             </CardHeader>
-            <CardContent>
-                <CardTitle className='mb-4'>{product.title}</CardTitle>
-                <CardDescription>{product.description}</CardDescription>
+            <CardContent className='h-[150px]'>
+                <CardTitle className='mb-2'>{product.title}</CardTitle>
+                <h3 className="mb-2 font-medium text-muted-foreground">{product.category}</h3>
+                <CardDescription className='line-clamp-5'>{product.description}</CardDescription>
             </CardContent>
             <CardFooter className='flex justify-between items-center'>
                 <div className="">R$ {product.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</div>
