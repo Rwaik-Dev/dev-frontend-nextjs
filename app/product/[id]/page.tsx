@@ -9,6 +9,7 @@ import SimilarProducts from '../_component/SimilarProducts';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import ProductDetailsTable from '../_component/ProductDetailsTable';
+import Header from '@/app/_components/Header';
 
 export default function ProductDetails() {
     const [productDetails, setProductDetails] = useState<ProductTypeResponse>({} as ProductTypeResponse);
@@ -35,7 +36,8 @@ export default function ProductDetails() {
     }, [id]);
 
     return (
-        <div className='px-48 w-screen h-screen py-4 '>
+        <div className='px-48 w-screen '>
+            <Header />
             {
                 loading ? (
                     <div className='flex justify-center items-center h-full'>

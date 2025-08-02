@@ -5,6 +5,7 @@ import { ProductTypeResponse } from '@/utils/types';
 import Loader from './_components/Loader';
 import { getProduts } from '@/utils/functions/products/getProducts';
 import { toast } from 'sonner';
+import Header from './_components/Header';
 
 export default function Home() {
 
@@ -31,10 +32,11 @@ export default function Home() {
 
   return (
     <main className={loading ? 'flex justify-center items-center h-screen' : 'grid grid-cols-3 gap-4 px-24'}>
+      <Header />
       {
         loading ?
           <Loader /> :
-          products.map((product, index) => <ItemCard key={product.id} id={product.id} title={product.title} price={product.price} description={product.description} category={product.category} image={product.image} rating={product.rating} />)
+          products.map((product) => <ItemCard key={product.id} id={product.id} title={product.title} price={product.price} description={product.description} category={product.category} image={product.image} rating={product.rating} />)
       }
     </main>
   )
