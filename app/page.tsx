@@ -6,8 +6,6 @@ import Loader from './_components/Loader';
 import { getProduts } from '@/utils/functions/products/getProducts';
 import { toast } from 'sonner';
 
-
-
 export default function Home() {
 
   const [products, setProducts] = useState<ProductTypeResponse[]>([])
@@ -16,7 +14,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchProducts() {
       setLoading(true)
-      const response = await getProduts({ limit: -20 })
+      const response = await getProduts({ limit: 20 })
       if (response instanceof Error) {
         toast.error(response.message)
         setLoading(false)
