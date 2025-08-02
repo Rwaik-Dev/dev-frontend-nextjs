@@ -9,7 +9,7 @@ export default function ProductDetailsTable(productInfo: ProductTypeResponse) {
     return (
         <div className="mt-16">
             <Tabs defaultValue="specifications" className="w-full">
-                <TabsList className="grid w-full grid-cols-2">  
+                <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="specifications">Especificações</TabsTrigger>
                     <TabsTrigger value="reviews">Avaliações</TabsTrigger>
                 </TabsList>
@@ -64,27 +64,7 @@ export default function ProductDetailsTable(productInfo: ProductTypeResponse) {
                     <Card>
                         <CardContent className="pt-6">
                             <div className="space-y-6">
-                                <div className="flex items-center justify-between">
-                                    <h4 className="font-semibold text-gray-900">Avaliações dos Clientes ({productInfo.rating.count})</h4>
-                                    <div className="flex items-center space-x-2">
-                                        <div className="flex items-center">
-                                            {[0, 1, 2, 3, 4].map((rating) => (
-                                                <Star
-                                                    key={rating}
-                                                    className={`h-4 w-4 ${rating < Math.floor(productInfo.rating.rate)
-                                                        ? "text-yellow-400 fill-current"
-                                                        : "text-gray-300"
-                                                        }`}
-                                                />
-                                            ))}
-                                        </div>
-                                        <span className="font-medium">{productInfo.rating.rate}/5</span>
-                                    </div>
-                                </div>
-
-                                <Separator />
-                                
-                                <div className="space-y-4">
+                                <div className="space-y-4 overflow-hidden">
                                     {[
                                         {
                                             name: "Maria Silva",
