@@ -1,50 +1,108 @@
 import React from 'react'
 import {
     Card,
-    CardAction,
     CardContent,
-    CardDescription,
     CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
 import Image from 'next/image'
 import { ProductTypeResponse } from '@/utils/types'
-import { Star } from 'lucide-react'
+import { Star, Eye, Edit, Trash2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 
+interface ItemCardProps extends ProductTypeResponse {
+    onDelete?: () => void;
+}
 
-
-export default function ItemCard(product: ProductTypeResponse) {
-
+export default function ItemCard(product: ItemCardProps) {
     const router = useRouter()
 
+    const handleView = () => {
+        router.push(`/product/${product.id}`)
+    }
+
+    const handleEdit = () => {
+        router.push(`/products/edit/${product.id}`)
+    }
+
+    const handleDelete = () => {
+        if (product.onDelete) {
+            product.onDelete()
+        }
+    }
+
     return (
-        <Card className='scale-100 hover:scale-102 transition-all duration-300 cursor-pointer' onClick={() => router.push(`/product/${product.id}`)}>
-            <CardHeader className='flex justify-center items-center h-[300px]'>
-                <Image
-                    src={product.image}
-                    alt={product.title}
-                    sizes="100vw"
-                    style={{
-                        width: '30%',
-                        height: 'auto',
-                    }}
-                    width={500}
-                    height={300} />
+        <Card className='group hover:shadow-lg transition-all duration-300 cursor-pointer border-0 shadow-sm'>
+            <CardHeader className='flex justify-center items-center h-48 p-4'>
+                <div className="relative w-full h-full">
+                    <Image
+                        src={product.image}
+                        alt={product.title}
+                        fill
+                        className="object-contain group-hover:scale-105 transition-transform duration-300"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                </div>
             </CardHeader>
-            <CardContent className='h-[150px]'>
-                <CardTitle className='mb-2'>{product.title}</CardTitle>
-                <h3 className="mb-2 font-medium text-muted-foreground">{product.category}</h3>
-                <CardDescription className='line-clamp-5'>{product.description}</CardDescription>
+            <CardContent className='p-4 space-y-3'>
+                <div className="flex items-start justify-between">
+                    <Badge variant="secondary" className="capitalize text-xs">
+                        {product.category}
+                    </Badge>
+                    <div className="flex items-center space-x-1">
+                        <Star className="h-3 w-3 text-yellow-500 fill-current" />
+                        <span className="text-xs text-gray-600">{product.rating.rate}</span>
+                    </div>
+                </div>
+                <CardTitle className='text-sm font-semibold line-clamp-2 leading-tight'>
+                    {product.title}
+                </CardTitle>
+                <p className='text-xs text-gray-600 line-clamp-2 leading-relaxed'>
+                    {product.description}
+                </p>
             </CardContent>
-            <CardFooter className='flex justify-between items-center'>
-                <div className="">R$ {product.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</div>
-                <div className="flex flex-col gap-1">
-                    <p className='flex'>
-                        {Array.from({ length: product.rating.rate }).map(() => <Star key={Math.random()} className="h-4 w-4 text-yellow-500 fill-amber-400" />)}
-                    </p>
-                    <span className='text-muted-foreground text-xs'>{product.rating.count} avaliações</span>
+            <CardFooter className='p-4 pt-0'>
+                <div className="w-full space-y-3">
+                    <div className="flex items-center justify-between">
+                        <span className="text-lg font-bold text-green-600">
+                            R$ {product.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                        </span>
+                        <span className="text-xs text-gray-500">
+                            {product.rating.count} avaliações
+                        </span>
+                    </div>
+                    <div className="flex gap-2">
+                        <Button 
+                            size="sm" 
+                            variant="outline" 
+                            className="flex-1 text-xs"
+                            onClick={handleView}
+                        >
+                            <Eye className="h-3 w-3 mr-1" />
+                            Ver
+                        </Button>
+                        <Button 
+                            size="sm" 
+                            variant="outline" 
+                            className="flex-1 text-xs"
+                            onClick={handleEdit}
+                        >
+                            <Edit className="h-3 w-3 mr-1" />
+                            Editar
+                        </Button>
+                        <Button 
+                            size="sm" 
+                            variant="outline" 
+                            className="flex-1 text-xs text-red-600 hover:text-red-700"
+                            onClick={handleDelete}
+                        >
+                            <Trash2 className="h-3 w-3 mr-1" />
+                            Excluir
+                        </Button>
+                    </div>
                 </div>
             </CardFooter>
         </Card>
