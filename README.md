@@ -18,7 +18,6 @@ Uma aplicação web completa de CRUD de produtos desenvolvida com Next.js, TypeS
 - **Sistema de busca avançado** - Busca por título, categoria e descrição
 - **Filtros por categoria** - Filtre produtos por categoria
 - **Ordenação** - Ordene por nome, preço ou categoria
-- **Modo de visualização** - Grid ou lista
 - **Feedback visual** - Toasts para sucesso e erro
 - **Loading states** - Indicadores de carregamento
 - **Validação de formulários** - Validação client-side
