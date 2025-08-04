@@ -32,7 +32,7 @@ export default function ProductDetails() {
 
                 if (request instanceof Error) {
                     toast.error(request.message);
-                    router.push('/products');
+                    router.push('/');
                     return;
                 }
 
@@ -40,7 +40,7 @@ export default function ProductDetails() {
                 setLoading(false);
             } catch (error) {
                 toast.error('Erro ao carregar produto');
-                router.push('/products');
+                router.push('/');
             }
         }
         fetchProductDetails();
@@ -52,7 +52,7 @@ export default function ProductDetails() {
             try {
                 await deleteProductById(productDetails.id);
                 toast.success('Produto excluído com sucesso!');
-                router.push('/products');
+                router.push('/');
             } catch (error) {
                 toast.error('Erro ao excluir produto');
             } finally {
@@ -77,7 +77,7 @@ export default function ProductDetails() {
                 {/* Header */}
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                        <Link href="/products">
+                        <Link href="/">
                             <Button variant="ghost" size="icon">
                                 <ArrowLeft className="h-4 w-4" />
                             </Button>
@@ -88,7 +88,7 @@ export default function ProductDetails() {
                         </div>
                     </div>
                     <div className="flex gap-2">
-                        <Link href={`/products/edit/${productDetails.id}`}>
+                        <Link href={`/product/edit/${productDetails.id}`}>
                             <Button variant="outline" size="sm">
                                 <Edit className="h-4 w-4 mr-2" />
                                 Editar

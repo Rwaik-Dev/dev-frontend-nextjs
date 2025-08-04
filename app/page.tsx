@@ -75,7 +75,7 @@ export default function Home() {
             <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
             <p className="text-gray-600 mt-1">Gerencie seus produtos de forma eficiente</p>
           </div>
-          <Link href="/products/create">
+          <Link href="/product/create">
             <Button className="w-full sm:w-auto">
               <Plus className="h-4 w-4 mr-2" />
               Criar Produto

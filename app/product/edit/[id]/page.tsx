@@ -12,7 +12,7 @@ import { ArrowLeft, Save, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import editProductById from '@/utils/functions/products/editProductById';
 import viewProductById from '@/utils/functions/products/viewProductById';
-import { ProductType, ProductTypeResponse } from '@/utils/types';
+import { ProductType } from '@/utils/types';
 
 export default function EditProductPage() {
   const router = useRouter();
@@ -38,7 +38,7 @@ export default function EditProductPage() {
       const product = await viewProductById(productId);
       if (product instanceof Error) {
         toast.error(product.message);
-        router.push('/products');
+        router.push('/');
         return;
       }
 
@@ -47,7 +47,7 @@ export default function EditProductPage() {
       setInitialLoading(false);
     } catch (error) {
       toast.error('Erro ao carregar produto');
-      router.push('/products');
+      router.push('/');
     }
   };
 
@@ -76,7 +76,7 @@ export default function EditProductPage() {
     try {
       await editProductById(parseInt(productId), formData);
       toast.success('Produto atualizado com sucesso!');
-      router.push('/products');
+      router.push('/');
     } catch (error) {
       toast.error('Erro ao atualizar produto');
       console.error('Erro ao atualizar produto:', error);
@@ -107,7 +107,7 @@ export default function EditProductPage() {
       <div className="max-w-2xl mx-auto space-y-6">
         {/* Header */}
         <div className="flex items-center gap-4">
-          <Link href="/products">
+          <Link href="/">
             <Button variant="ghost" size="icon">
               <ArrowLeft className="h-4 w-4" />
             </Button>
@@ -219,7 +219,7 @@ export default function EditProductPage() {
 
               {/* Botões */}
               <div className="flex gap-4 pt-4">
-                <Link href="/products" className="flex-1">
+                <Link href="/" className="flex-1">
                   <Button type="button" variant="outline" className="w-full">
                     Cancelar
                   </Button>

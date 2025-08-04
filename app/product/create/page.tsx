@@ -49,7 +49,7 @@ export default function CreateProductPage() {
     try {
       await createProduct(formData);
       toast.success('Produto criado com sucesso!');
-      router.push('/products');
+      router.push('/');
     } catch (error) {
       toast.error('Erro ao criar produto');
       console.error('Erro ao criar produto:', error);
@@ -70,7 +70,7 @@ export default function CreateProductPage() {
       <div className="max-w-2xl mx-auto space-y-6">
         {/* Header */}
         <div className="flex items-center gap-4">
-          <Link href="/products">
+          <Link href="/">
             <Button variant="ghost" size="icon">
               <ArrowLeft className="h-4 w-4" />
             </Button>
@@ -182,7 +182,7 @@ export default function CreateProductPage() {
 
               {/* Botões */}
               <div className="flex gap-4 pt-4">
-                <Link href="/products" className="flex-1">
+                <Link href="/" className="flex-1">
                   <Button type="button" variant="outline" className="w-full">
                     Cancelar
                   </Button>

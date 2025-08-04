@@ -25,7 +25,7 @@ export default function ItemCard(product: ItemCardProps) {
     }
 
     const handleEdit = () => {
-        router.push(`/products/edit/${product.id}`)
+        router.push(`/product/edit/${product.id}`)
     }
 
     const handleDelete = () => {

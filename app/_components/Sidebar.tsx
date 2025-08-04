@@ -22,7 +22,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   const navigation = [
     { name: 'Dashboard', href: '/', icon: Home },
-    { name: 'Criar Produto', href: '/products/create', icon: Plus },
+    { name: 'Criar Produto', href: '/product/create', icon: Plus },
   ];
 
   const isActive = (href: string) => {
