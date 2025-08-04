@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: "Product CRUD - FakeStore API",
   description: "Aplicação CRUD de produtos utilizando Next.js, TypeScript e FakeStore API",
   keywords: ["Next.js", "TypeScript", "CRUD", "Products", "FakeStore API"],
-  authors: [{ name: "Developer" }],
+  authors: [{ name: "Rwaik", url: "https://github.com/Rwaik-Dev" }],
 };
 
 export const viewport = {
